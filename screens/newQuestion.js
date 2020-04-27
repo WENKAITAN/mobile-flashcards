@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TextInput, Keyboard, TouchableOpacity } from 'react-native'
-
+import { addCardToDeck } from '../utils/api'
+import { addCardToDeck_re } from '../actions/index'
 class NewQuestion extends Component{
     state = {
         question:'',
@@ -8,12 +9,16 @@ class NewQuestion extends Component{
     }
 
     handleSubmit = (e) => {
+        const { question, answer } = this.state
+        const { title, navigation, dispatch } = this.props
+        const card = {
+            question,
+            answer
+        }
         e.preventDefault()
-
-        //update the db
-        this.props.navigation.goBack()
-        //update to the redux
-
+        addCardToDeck(title, card)
+        dispatch(addCardToDeck_re(title, card))
+        navigation.goBack()
         this.setState({
             question: "",
             answer: ""
@@ -83,4 +88,11 @@ const styles = StyleSheet.create({
     }
 })
 
-export default NewQuestion
+function mapStateToProps({route}){
+    const { title } = route.params
+    return {
+        title
+    }
+}
+
+export default connect(mapStateToProps)(NewQuestion)

@@ -12,18 +12,14 @@ import Deck from './screens/Deck'
 import NewQuestion from './screens/newQuestion'
 import Quiz from './screens/Quiz'
 import QuizAnswer from './screens/QuizAnswer'
-import Constants from 'expo-constants'
 import { Provider } from 'react-redux'
 import reducer from './reducers/index'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
+import { setLocalNotification } from './utils/helper'
 const Stack = createStackNavigator();
 
-// function FlashStatusBar({ backgroundColor, ...props }) {
-//   <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-//     <StatusBar translucent backgroundColor={backgroundColor}{...props} />
-//   </View>
-// }
+
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const [initialNavigationState, setInitialNavigationState] = React.useState();
@@ -35,7 +31,7 @@ export default function App(props) {
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHide();
-
+        setLocalNotification();
         // Load our initial navigation state
         setInitialNavigationState(await getInitialState());
 
@@ -69,7 +65,6 @@ export default function App(props) {
               <Stack.Screen name="Deck" component={Deck} />
               <Stack.Screen name="NewQuestion" component={NewQuestion} />
               <Stack.Screen name="Quiz" component={Quiz} />
-              <Stack.Screen name="QuizAnswer" component={QuizAnswer} />
               <Stack.Screen name="LinksScreen" component={LinksScreen} />
             </Stack.Navigator>
           </NavigationContainer>

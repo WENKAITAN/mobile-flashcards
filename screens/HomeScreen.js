@@ -1,6 +1,6 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/index'
 
@@ -14,12 +14,20 @@ class HomeScreen extends React.Component{
   render(){
     const { decks, navigation } = this.props
     return (
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Deck')}  >
-          <Text style={{ fontSize: 35, marginBottom: 10 }}>deck1</Text>
-          <Text style={{ fontSize: 20 }}> 3 cards</Text>
-        </TouchableOpacity>
-      </View>
+      <ScrollView style={styles.container}>
+        {Object.values(decks).map((deck) => (
+          <TouchableOpacity 
+            key={deck.title} 
+            style={styles.btn} 
+            onPress={() => 
+              navigation.navigate('Deck', {title: deck.title})
+            } 
+          >
+            <Text style={{ fontSize: 35, marginBottom: 10 }}>{deck.title}</Text>
+            <Text style={{ fontSize: 20 }}> {deck.questions.length()} cards</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
     )
   }
 }
@@ -33,10 +41,10 @@ const styles = StyleSheet.create({
 
 })
 
-function mapStateToProps(state){
-  return{
-    decks: state
-  }
-}
+const mapStateToProps = state => ({ decks: state });
 
-export default connect(mapStateToProps,{ handleInitialData })(HomeScreen)
+
+export default connect(
+  mapStateToProps,
+  { handleInitialData }
+)(HomeScreen)

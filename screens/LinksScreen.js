@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Keyboard } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { saveDeckTitle } from '../utils/api'
+import { connect } from 'react-redux';
+import { addDeck } from '../actions/index'
 
-export default class LinksScreen extends React.Component{
+class LinksScreen extends React.Component{
   state = {
     title:''
   }
@@ -10,10 +13,11 @@ export default class LinksScreen extends React.Component{
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.navigation.navigate('Deck')
+    saveDeckTitle(this.state.title)
+    this.props.dispatch(addDeck(this.state.title))
     this.setState({
       title:""
     })
-    // save to AsynvStorage
   }
 
   render(){
@@ -32,6 +36,7 @@ export default class LinksScreen extends React.Component{
             <TouchableOpacity
               style={styles.saveButton}
               onPress={this.handleSubmit}
+              disabled = {title === ''}
             >
               <Text style={styles.saveButtonText}>Submit</Text>
             </TouchableOpacity>
@@ -68,3 +73,6 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 })
+
+
+export default connect()(LinksScreen)

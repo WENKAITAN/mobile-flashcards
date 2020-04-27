@@ -1,4 +1,4 @@
-import { RECEIVE_DECKS, GET_DECK, SAVE_DECK_TITLE, ADD_CARD_TO_DECK } from '../actions/'
+import { RECEIVE_DECKS, GET_DECK, SAVE_DECK_TITLE, ADD_CARD_TO_DECK, REMOVE_DECK } from '../actions/'
 
 export default function decks(state={}, action){
     switch(action.type){
@@ -17,11 +17,15 @@ export default function decks(state={}, action){
                     questions: []
                 }
             }
+        case REMOVE_DECK:
+            const { id } = action
+            const { [id]: value, ...rest } = state
+            return rest
         case ADD_CARD_TO_DECK:
             return{
                 ...state,
                 [action.title]:{
-                    ...state[title],
+                    ...state[action.title],
                     questions:[...action.title.questions, action.card]
                 }
             }

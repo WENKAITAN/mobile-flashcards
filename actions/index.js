@@ -1,8 +1,9 @@
-import { getDecks } from '../assets/api'
+import { getDecks } from '../utils/api'
 export const RECEIVE_DECKS = "receive_decks"
 export const GET_DECK = "get_deck"
 export const SAVE_DECK_TITLE = "save_deck_title"
 export const ADD_CARD_TO_DECK = "add_card_to_deck"
+export const REMOVE_DECK = "remove_deck"
 
 export function receiveDecks(decks){
     return{
@@ -18,7 +19,7 @@ export function getDeck(id){
     }
 }
 
-export function saveDeckTitle(title){
+export function addDeck(title){
     return{
         type: SAVE_DECK_TITLE,
         title
@@ -26,11 +27,17 @@ export function saveDeckTitle(title){
 
 }
 
-export function addCardToDeck(title, card){
+export function addCardToDeck_re(title, card){
     return{
         type: ADD_CARD_TO_DECK,
         title,
         card
+    }
+}
+export function remoceDeck(id){
+    return{
+        type: REMOVE_DECK,
+        id
     }
 }
 
