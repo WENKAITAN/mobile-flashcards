@@ -8,7 +8,7 @@ class Deck extends Component{
             <View style={styles.container}>
                 <View style={styles.infoContainer}>
                     <Text style={{fontSize:35,textAlign:'center'}}>{deck.title}</Text>
-                    <Text style={{ fontSize: 15, textAlign: 'center',color:'grey' }}>{deck.questions.length()} cards</Text>
+                    <Text style={{ fontSize: 15, textAlign: 'center',color:'grey' }}>{deck.questions.length} cards</Text>
                 </View>
                 <View style={styles.btnContainer}>
                     <TouchableOpacity style={styles.btnCard} onPress={() => navigation.navigate('NewQuestion', {title: deck.title})}>

@@ -14,7 +14,7 @@ class HomeScreen extends React.Component{
   render(){
     const { decks, navigation } = this.props
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         {Object.values(decks).map((deck) => (
           <TouchableOpacity 
             key={deck.title} 
@@ -24,7 +24,7 @@ class HomeScreen extends React.Component{
             } 
           >
             <Text style={{ fontSize: 35, marginBottom: 10 }}>{deck.title}</Text>
-            <Text style={{ fontSize: 20 }}> {deck.questions.length()} cards</Text>
+            <Text style={{ fontSize: 20 }}> {deck.questions.length} cards</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>

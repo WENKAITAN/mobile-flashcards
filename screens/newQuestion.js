@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TextInput, Keyboard, TouchableOpacity } from 'react-native'
 import { addCardToDeck } from '../utils/api'
 import { addCardToDeck_re } from '../actions/index'
+import { connect } from 'react-redux'
 class NewQuestion extends Component{
     state = {
         question:'',

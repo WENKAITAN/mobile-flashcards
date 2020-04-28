@@ -70,6 +70,7 @@ class Quiz_iOS extends Component {
     render() {
         const { questions } = this.props.deck;
         const { show } = this.state;
+        const navigation = useNavigation()
 
         if (questions.length === 0) {
             return (
@@ -123,7 +124,7 @@ class Quiz_iOS extends Component {
                             txtStyle={{ color: textGray }}
                             onPress={() => {
                                 this.handleReset();
-                                this.props.navigation.navigate('Home');
+                                navigation.navigate('Home');
                             }}
                         >
                             Home
@@ -264,4 +265,4 @@ const mapStateToProps = (state, { title }) => {
     };
 };
 
-export default useNavigation(connect(mapStateToProps)(Quiz_iOS));
+export default connect(mapStateToProps)(Quiz_iOS)

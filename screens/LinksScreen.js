@@ -1,9 +1,22 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Keyboard } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { saveDeckTitle } from '../utils/api'
 import { connect } from 'react-redux';
 import { addDeck } from '../actions/index'
+
+// const DismissKeyboard = ({title}) => (
+//   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+//     <View>
+//       <TextInput
+//         style={styles.textInput}
+//         placeholder="Deck title"
+//         value={title}
+//         onChangeText={text => this.setState({ title: text })}
+//       />
+//     </View>
+//   </TouchableWithoutFeedback>
+// )
 
 class LinksScreen extends React.Component{
   state = {
@@ -28,9 +41,8 @@ class LinksScreen extends React.Component{
           <TextInput
             style={styles.textInput}
             placeholder="Deck title"
-            onBlur={Keyboard.dismiss}
             value={title}
-            onChangeText={text => this.setState({title: text})}
+            onChangeText={text => this.setState({ title: text })}
           />
           <View style={styles.inputContainer}>
             <TouchableOpacity
@@ -38,7 +50,9 @@ class LinksScreen extends React.Component{
               onPress={this.handleSubmit}
               disabled = {title === ''}
             >
-              <Text style={styles.saveButtonText}>Submit</Text>
+              <Text 
+              style={styles.saveButtonText}
+              disabled={title === ''}>Submit</Text>
             </TouchableOpacity>
           </View>
         </View>
