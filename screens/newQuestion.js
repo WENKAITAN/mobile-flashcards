@@ -10,20 +10,20 @@ class NewQuestion extends Component{
     }
 
     handleSubmit = (e) => {
-        const { question, answer } = this.state
-        const { title, navigation, dispatch } = this.props
+        const { navigation, dispatch } = this.props
+        const title = this.props.route.params.title
         const card = {
-            question,
-            answer
+            question: this.state.question,
+            answer: this.state.answer
         }
         e.preventDefault()
         addCardToDeck(title, card)
         dispatch(addCardToDeck_re(title, card))
-        navigation.goBack()
         this.setState({
             question: "",
             answer: ""
         })
+        navigation.navigate('Deck')
     }
 
     render(){
@@ -89,11 +89,6 @@ const styles = StyleSheet.create({
     }
 })
 
-function mapStateToProps({route}){
-    const { title } = route.params
-    return {
-        title
-    }
-}
 
-export default connect(mapStateToProps)(NewQuestion)
+
+export default connect()(NewQuestion)

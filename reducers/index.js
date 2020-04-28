@@ -10,6 +10,7 @@ export default function decks(state={}, action){
         case GET_DECK:
             return state[action.id]
         case SAVE_DECK_TITLE:
+            const { title } = action
             return{
                 ...state,
                 [title]:{
@@ -26,7 +27,7 @@ export default function decks(state={}, action){
                 ...state,
                 [action.title]:{
                     ...state[action.title],
-                    questions:[...action.title.questions, action.card]
+                    questions: [...state[action.title].questions].concat(action.card)
                 }
             }
         default:

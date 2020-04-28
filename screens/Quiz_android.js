@@ -72,7 +72,7 @@ export class Quiz_Android extends Component {
     render() {
         const { questions } = this.props.deck;
         const { show } = this.state;
-        const navigation = useNavigation()
+        const navigation = this.props
 
         if (questions.length === 0) {
             return (

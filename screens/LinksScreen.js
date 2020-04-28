@@ -25,9 +25,9 @@ class LinksScreen extends React.Component{
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.navigation.navigate('Deck')
     saveDeckTitle(this.state.title)
     this.props.dispatch(addDeck(this.state.title))
+    this.props.navigation.navigate('Deck', { title: this.state.title })
     this.setState({
       title:""
     })

@@ -1,11 +1,11 @@
 import { AsyncStorage } from 'react-native'
-import {  Notifications } from 'expo'
+import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
 const NOTIFICATION_KEY = 'mobile_flashcards:notificationS'
 
 export function clearNotification(){
     AsyncStorage.removeItem(NOTIFICATION_KEY)
-     .then(NOTIFICATIONS.cancelAllScheduledNotificationsAsync())
+     .then(Notifications.cancelAllScheduledNotificationsAsync())
 }
 
 function createNotification(){

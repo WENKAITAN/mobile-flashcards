@@ -24,7 +24,7 @@ class HomeScreen extends React.Component{
             } 
           >
             <Text style={{ fontSize: 35, marginBottom: 10 }}>{deck.title}</Text>
-            <Text style={{ fontSize: 20 }}> {deck.questions.length} cards</Text>
+            <Text style={{ fontSize: 20, textAlign: 'center' }}> {deck.questions.length} cards</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>

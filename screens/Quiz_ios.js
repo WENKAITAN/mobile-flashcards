@@ -5,7 +5,7 @@ import TextButton from './TextButton';
 import TouchButton from './TouchButton';
 import { gray, green, red, textGray, darkGray, white } from '../utils/colors';
 import { connect } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
+
 
 const screen = {
     QUESTION: 'question',
@@ -19,10 +19,7 @@ const answer = {
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class Quiz_iOS extends Component {
-    static propTypes = {
-        navigation: PropTypes.object.isRequired,
-        deck: PropTypes.object.isRequired
-    };
+
     state = {
         show: screen.QUESTION,
         correct: 0,
@@ -70,7 +67,6 @@ class Quiz_iOS extends Component {
     render() {
         const { questions } = this.props.deck;
         const { show } = this.state;
-        const navigation = useNavigation()
 
         if (questions.length === 0) {
             return (
@@ -118,16 +114,6 @@ class Quiz_iOS extends Component {
                             onPress={this.handleReset}
                         >
                             Restart Quiz
-            </TouchButton>
-                        <TouchButton
-                            btnStyle={{ backgroundColor: gray, borderColor: textGray }}
-                            txtStyle={{ color: textGray }}
-                            onPress={() => {
-                                this.handleReset();
-                                navigation.navigate('Home');
-                            }}
-                        >
-                            Home
             </TouchButton>
                     </View>
                 </View>
