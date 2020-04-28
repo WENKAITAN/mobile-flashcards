@@ -201,6 +201,8 @@ class Quiz_iOS extends Component {
     }
 }
 
+
+
 const styles = StyleSheet.create({
     container: {
         flex: 1
