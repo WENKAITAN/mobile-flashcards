@@ -4,7 +4,7 @@ import * as Permissions from 'expo-permissions';
 const NOTIFICATION_KEY = 'mobile_flashcards:notificationS'
 
 export function clearNotification(){
-    AsyncStorage.removeItem(NOTIFICATION_KEY)
+    return AsyncStorage.removeItem(NOTIFICATION_KEY)
      .then(Notifications.cancelAllScheduledNotificationsAsync())
 }
 
