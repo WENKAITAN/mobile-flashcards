@@ -62,8 +62,9 @@ class Quiz extends Component {
             incorrect: 0,
             answered: Array(prevState.questionCount).fill(0)
         }));
+
         clearNotification()
-         .then(setLocalNotification)
+        setLocalNotification()
     };
     render() {
         const { questions } = this.props.deck;
